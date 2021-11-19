@@ -2,6 +2,7 @@ package com.franck.carin.expensetracker.controller;
 
 
 import com.franck.carin.expensetracker.dto.ExpenseDto;
+import com.franck.carin.expensetracker.model.Expense;
 import com.franck.carin.expensetracker.service.ExpenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,6 +45,13 @@ public class ExpenseController {
   @ResponseStatus(HttpStatus.OK)
   public List<ExpenseDto> getAllExpenses() {
     return expenseService.getAllExpenses();
+  }
+
+
+  @PutMapping
+  @ResponseStatus(HttpStatus.OK)
+  public void updateExpense(@RequestBody ExpenseDto expenseDto) {
+    expenseService.updateExpense(expenseDto);
   }
 
 }
