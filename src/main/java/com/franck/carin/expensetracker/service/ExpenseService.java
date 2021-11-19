@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -41,6 +44,16 @@ public class ExpenseService {
 
   }
 
+  /**
+   * method to get all expenses
+   * @return
+   */
+  public List<ExpenseDto> getAllExpenses() {
+
+    return expenseRepository.findAll()
+            .stream()
+            .map(this::mapToDto).collect(Collectors.toList());
+  }
 
 
   private Expense mapFromDto(ExpenseDto expenseDto) {
