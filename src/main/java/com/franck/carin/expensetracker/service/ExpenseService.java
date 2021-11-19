@@ -56,6 +56,23 @@ public class ExpenseService {
   }
 
 
+  /**
+   * method to update an expense
+   * @param expenseDto
+   */
+  public void updateExpense(ExpenseDto expenseDto) {
+    Expense savedExpense =  expenseRepository.findById(expenseDto.getId())
+            .orElseThrow(() -> new RuntimeException(String.format("Cannot find expense with ID %s",expenseDto.getId())));
+
+    savedExpense.setExpenseName(expenseDto.getExpenseName());
+    savedExpense.setExpenseAmount(expenseDto.getExpenseAmount());
+    savedExpense.setExpenseCategory(expenseDto.getExpenseCategory());
+
+    expenseRepository.save(savedExpense);
+  }
+
+
+
   private Expense mapFromDto(ExpenseDto expenseDto) {
     return Expense.builder()
             .expenseName(expenseDto.getExpenseName())
@@ -74,5 +91,8 @@ public class ExpenseService {
             .expenseAmount(expense.getExpenseAmount())
             .build();
   }
+
+
+
 
 }
