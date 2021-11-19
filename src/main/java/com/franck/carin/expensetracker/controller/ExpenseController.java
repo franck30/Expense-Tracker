@@ -54,4 +54,12 @@ public class ExpenseController {
     expenseService.updateExpense(expenseDto);
   }
 
+
+  @DeleteMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deleteExpense(@PathVariable String id) {
+    expenseService.deleteExpense(id);
+  }
+
+
 }
