@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/expense")
@@ -18,7 +19,7 @@ public class ExpenseController {
 
   private final ExpenseService expenseService;
 
-@PostMapping
+  @PostMapping
   public ResponseEntity<Void> addExpense(@RequestBody ExpenseDto expenseDto) {
     String expenseId = expenseService.addExpense(expenseDto);
 
@@ -36,6 +37,13 @@ public class ExpenseController {
   @ResponseStatus(HttpStatus.OK)
   public ExpenseDto getExpenseByName(@PathVariable String name) {
     return expenseService.getExpense(name);
+  }
+
+
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public List<ExpenseDto> getAllExpenses() {
+    return expenseService.getAllExpenses();
   }
 
 }
