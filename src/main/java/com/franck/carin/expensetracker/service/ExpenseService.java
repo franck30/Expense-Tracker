@@ -71,6 +71,13 @@ public class ExpenseService {
     expenseRepository.save(savedExpense);
   }
 
+  /**
+   * method to delete an expense
+   * @param id
+   */
+  public void deleteExpense(String id) {
+     expenseRepository.deleteById(id);
+  }
 
 
   private Expense mapFromDto(ExpenseDto expenseDto) {
