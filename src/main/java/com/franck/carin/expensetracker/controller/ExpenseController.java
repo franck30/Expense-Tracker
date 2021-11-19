@@ -34,6 +34,11 @@ public class ExpenseController {
             .build();
   }
 
+  /**
+   * get an expense by its name
+   * @param name
+   * @return
+   */
   @GetMapping("/{name}")
   @ResponseStatus(HttpStatus.OK)
   public ExpenseDto getExpenseByName(@PathVariable String name) {
